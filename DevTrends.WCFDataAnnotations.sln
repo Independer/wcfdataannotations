@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTrends.WCFDataAnnotations", "DevTrends.WCFDataAnnotations\DevTrends.WCFDataAnnotations.csproj", "{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTrends.WCFDataAnnotations.UnitTests", "DevTrends.WCFDataAnnotations.UnitTests\DevTrends.WCFDataAnnotations.UnitTests.csproj", "{ADA5C939-0C93-4DE6-AC70-8227214C9878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8CDD3D0A-66AC-46F6-8AA2-6F55D31E37A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA5C939-0C93-4DE6-AC70-8227214C9878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA5C939-0C93-4DE6-AC70-8227214C9878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA5C939-0C93-4DE6-AC70-8227214C9878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA5C939-0C93-4DE6-AC70-8227214C9878}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ADA5C939-0C93-4DE6-AC70-8227214C9878} = {8CDD3D0A-66AC-46F6-8AA2-6F55D31E37A4}
+	EndGlobalSection
+EndGlobal
