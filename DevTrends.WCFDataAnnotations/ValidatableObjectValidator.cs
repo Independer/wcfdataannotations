@@ -1,21 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace DevTrends.WCFDataAnnotations
 {
+    /// <summary>
+    /// Validates objects that implement <see cref="IValidatableObject"/>
+    /// </summary>
     public class ValidatableObjectValidator : IObjectValidator
     {
-        public IEnumerable<ValidationResult> Validate(object input)
+        /// <summary>
+        /// Validates the object.
+        /// </summary>
+        /// <param name="value">The object to validate.</param>
+        /// <returns>
+        /// A collection of <see cref="ValidationResult" /> containing information
+        /// about validation errors
+        /// </returns>
+        public IEnumerable<ValidationResult> Validate(object value)
         {
-            var validatableInput = input as IValidatableObject;
+            var validatableInput = value as IValidatableObject;
 
             if (validatableInput != null)
             {
-                return validatableInput.Validate(new ValidationContext(input, null, null));
-            }
+                var context = new ValidationContext(value, null, null);
 
-            return Enumerable.Empty<ValidationResult>();
+                foreach (var result in validatableInput.Validate(context))
+                {
+                    yield return result;
+                }
+            }
         }
     }
 }

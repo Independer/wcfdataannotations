@@ -9,14 +9,13 @@ namespace DevTrends.WCFDataAnnotations.UnitTests
     public class ValidatableObjectValidatorTests
     {
         private const string ErrorMessage = "oops message";
-
         private ValidatableObjectValidator _validator;
 
         [SetUp]
         public void Setup()
         {
             _validator = new ValidatableObjectValidator();
-        }        
+        }
 
         [Test]
         public void Validate_Does_Not_Return_ValidationResult_When_Passed_Null()
@@ -24,7 +23,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests
             var result = _validator.Validate(null);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Any(), Is.False);            
+            Assert.That(result.Any(), Is.False);
         }
 
         [Test]
