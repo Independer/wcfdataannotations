@@ -10,31 +10,6 @@ namespace DevTrends.WCFDataAnnotations
     {
         public string GenerateErrorMessage(string operationName, IEnumerable<ValidationResult> validationResults)
         {
-            ValidateArguments(operationName, validationResults);
-
-            var errorMessageBuilder = new StringBuilder();
-
-            errorMessageBuilder.AppendFormat("Service operation {0} failed due to validation errors: \n\n", operationName);
-
-            foreach (var validationResult in validationResults)
-            {
-                var memberName = validationResult.MemberNames.FirstOrDefault();
-
-                if (memberName == null)
-                {
-                    errorMessageBuilder.AppendFormat("{0} \n", validationResult.ErrorMessage);
-                }
-                else
-                {
-                    errorMessageBuilder.AppendFormat("{0}: {1} \n", memberName, validationResult.ErrorMessage);
-                }
-            }
-
-            return errorMessageBuilder.ToString();
-        }
-
-        private static void ValidateArguments(string operationName, IEnumerable<ValidationResult> validationResults)
-        {
             if (operationName == null)
             {
                 throw new ArgumentNullException("operationName");
@@ -47,8 +22,25 @@ namespace DevTrends.WCFDataAnnotations
 
             if (!validationResults.Any())
             {
-                throw new ArgumentException("At least one validationResult is required");
+                throw new ArgumentException("At least one ValidationResult is required");
             }
+
+            var errorMessageBuilder = new StringBuilder();
+
+            errorMessageBuilder.AppendFormat(
+                "Service operation {0} failed due to validation errors: {1}{1}",
+                operationName,
+                Environment.NewLine);
+
+            foreach (var validationResult in validationResults)
+            {
+                errorMessageBuilder.AppendFormat(
+                    "{0} {1}",
+                    validationResult.ErrorMessage,
+                    Environment.NewLine);
+            }
+
+            return errorMessageBuilder.ToString();
         }
     }
 }
