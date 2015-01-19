@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DevTrends.WCFDataAnnotations
 {
     /// <summary>
-    /// Validates objects.
+    /// Validates an object
     /// </summary>
     public interface IObjectValidator
     {

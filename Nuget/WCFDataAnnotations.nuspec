@@ -2,15 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>WCFDataAnnotations</id>
-    <version>1.0.1</version>
-    <authors>Paul Hiles, Russ Cam</authors>
-    <owners>DevTrends</owners>
+    <version>1.1.0</version>
+    <authors>Paul Hiles</authors>
+    <owners>devtrends, forloop</owners>
     <licenseUrl>http://wcfdataannotations.codeplex.com/license</licenseUrl>
     <projectUrl>http://wcfdataannotations.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<summary>Validate WCF service operation arguments using validation attributes and IValidatableObject</summary>
     <description>WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the validation attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.</description>
-	<releaseNotes>Validate Data Annotations Validation Attributes applied to properties anywhere in the object graph</releaseNotes>
-    <tags>wcf validation dataannotations componentmodel</tags>
+	<releaseNotes>Validate Data Annotations Validation Attributes applied to properties down the entire object graph</releaseNotes>
+    <tags>WCF validation dataannotations servicebehavior componentmodel</tags>
   </metadata>
+  <files>
+    <file src="..\DevTrends.WCFDataAnnotations\bin\Release\*.*" target="lib\net40" />  
+  </files>
 </package>

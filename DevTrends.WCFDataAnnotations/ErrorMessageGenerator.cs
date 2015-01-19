@@ -6,8 +6,24 @@ using System.Text;
 
 namespace DevTrends.WCFDataAnnotations
 {
+    /// <summary>
+    /// Default error message generation that uses the error messages from the 
+    /// <see cref="IEnumerable{ValidationResult}"/>
+    /// </summary>
     public class ErrorMessageGenerator : IErrorMessageGenerator
     {
+        /// <summary>
+        /// Generates the error message.
+        /// </summary>
+        /// <param name="operationName">Name of the operation.</param>
+        /// <param name="validationResults">The validation results.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// operationName
+        /// or
+        /// validationResults
+        /// </exception>
+        /// <exception cref="System.ArgumentException">At least one ValidationResult is required</exception>
         public string GenerateErrorMessage(string operationName, IEnumerable<ValidationResult> validationResults)
         {
             if (operationName == null)

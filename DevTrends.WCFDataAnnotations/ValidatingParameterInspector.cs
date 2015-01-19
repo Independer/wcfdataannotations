@@ -8,7 +8,8 @@ using System.ServiceModel.Dispatcher;
 namespace DevTrends.WCFDataAnnotations
 {
     /// <summary>
-    /// 
+    /// Validates incoming parameters using Data Annotations before executing
+    /// the service operation call
     /// </summary>
     public class ValidatingParameterInspector : IParameterInspector
     {

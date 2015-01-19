@@ -36,3 +36,6 @@ _ReSharper*/
 
 # NuGet Packages Directory
 packages
+
+# Nuget Package
+*.nupkg

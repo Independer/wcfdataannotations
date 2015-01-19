@@ -5,9 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DevTrends.WCFDataAnnotations")]
-[assembly: AssemblyDescription(@"WCFDataAnnotations allows you to automatically validate WCF 
-service operation arguments using the validation attributes 
-and IValidatableObject interface from System.ComponentModel.DataAnnotations.")]
+[assembly: AssemblyDescription("WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the validation attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DevTrends")]
 [assembly: AssemblyProduct("DevTrends.WCFDataAnnotations")]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DevTrends.WCFDataAnnotations
 {
     /// <summary>
-    /// Validates that an object is not null
+    /// Validates objects to ensure they are not null
     /// </summary>
     public class NullCheckObjectValidator : IObjectValidator
     {
