@@ -48,6 +48,9 @@
     <Compile Include="ErrorMessageGenerator.cs" />
     <Compile Include="IErrorMessageGenerator.cs" />
     <Compile Include="IObjectValidator.cs" />
+    <Compile Include="ParameterDetails.cs" />
+    <Compile Include="ParameterInfo.cs" />
+    <Compile Include="SkipNullCheckAttribute.cs" />
     <Compile Include="ValidatableObjectValidator.cs" />
     <Compile Include="ValidateDataAnnotationsBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
