@@ -66,10 +66,10 @@ namespace DevTrends.WCFDataAnnotations {
         from operation in endpoint.DispatchRuntime.Operations
         select operation;
 
-      var contractMethods = serviceHostBase.Description.Endpoints.SelectMany(x => x.Contract.ContractType.GetMethods()).ToList();
-
+      var contractOperations = serviceHostBase.Description.Endpoints.SelectMany(x => x.Contract.Operations).ToList();
+      
       foreach (var operation in operations) {
-        var parameterInfo = GetParameterInfo(operation.Name, contractMethods);
+        var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
 
         operation.ParameterInspectors.Add(parameterInfo.HasAnyParameterSkipNullCheck
           ? new ValidatingParameterInspector(_validators, new ErrorMessageGenerator(), parameterInfo)
@@ -89,13 +89,13 @@ namespace DevTrends.WCFDataAnnotations {
     /// Gets the parameters information for the given operation
     /// </summary>
     /// <param name="operationName"></param>
-    /// <param name="contractMethods"></param>
+    /// <param name="contractOperations"></param>
     /// <returns></returns>
-    private ParameterInfo GetParameterInfo(string operationName, IEnumerable<MethodInfo> contractMethods) {
-      var parameterInfo = new ParameterInfo();
-
-      var parameters = contractMethods.Single(x => x.Name == operationName).GetParameters();
+    private ParameterDetailsInfo GetParameterInfo(string operationName, IEnumerable<OperationDescription> contractOperations) {
+      var parameterInfo = new ParameterDetailsInfo();
       
+      var parameters = GetParameters(contractOperations.Single(x => x.Name == operationName));
+
       foreach (var parameter in parameters.OrderBy(x => x.Position)) {
         var skipNullCheck = false;
 
@@ -109,6 +109,16 @@ namespace DevTrends.WCFDataAnnotations {
       }
 
       return parameterInfo;
+    }
+
+    private IEnumerable<ParameterInfo> GetParameters(OperationDescription operationDescription) {
+      var method = operationDescription.SyncMethod ?? operationDescription.TaskMethod;
+
+      if (method == null) {
+        throw new InvalidOperationException("Either SyncMethod or TaskMethod should have a value!");
+      }
+      
+      return method.GetParameters();
     }
   }
 }

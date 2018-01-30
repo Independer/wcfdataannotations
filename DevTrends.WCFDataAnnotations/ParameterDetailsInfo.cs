@@ -2,14 +2,14 @@
 using System.Linq;
 
 namespace DevTrends.WCFDataAnnotations {
-  public class ParameterInfo {
+  public class ParameterDetailsInfo {
     public List<ParameterDetails> ParameterDetails { get; set; }
 
     public bool HasAnyParameterSkipNullCheck {
       get { return ParameterDetails.Any(x => x.SkipNullcheck); }
     }
 
-    public ParameterInfo() {
+    public ParameterDetailsInfo() {
       ParameterDetails = new List<ParameterDetails>();
     }
   }

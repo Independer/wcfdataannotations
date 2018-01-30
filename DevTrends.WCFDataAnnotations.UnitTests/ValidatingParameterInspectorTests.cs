@@ -119,7 +119,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_SkipNullCheck() {
-      var parameterInfo = new ParameterInfo {ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = true }}};
+      var parameterInfo = new ParameterDetailsInfo {ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = true }}};
       var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
       object input = null;
       inspector.BeforeCall(OperationName, new[] { input });
@@ -128,7 +128,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_SkipNullCheck_With_Multiple_Parameters() {
-      var parameterInfo = new ParameterInfo {
+      var parameterInfo = new ParameterDetailsInfo {
         ParameterDetails = new List<ParameterDetails> {
           new ParameterDetails { Name = "test1", Position = 0, SkipNullcheck = false },
           new ParameterDetails { Name = "test2", Position = 1, SkipNullcheck = true },
@@ -144,7 +144,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_SkipNullCheck_With_Multiple_Parameters_Should_Throw_If_Not_SkipNullCheck_Marked_Parameter_Is_Null() {
-      var parameterInfo = new ParameterInfo {
+      var parameterInfo = new ParameterDetailsInfo {
         ParameterDetails = new List<ParameterDetails> {
           new ParameterDetails { Name = "test1", Position = 0, SkipNullcheck = false },
           new ParameterDetails { Name = "test2", Position = 1, SkipNullcheck = true },
@@ -171,7 +171,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_Throws_Exception_On_Null_When_No_SkipNullCheck_Defined_But_ParameterInfo_Passed() {
-      var parameterInfo = new ParameterInfo { ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = false } } };
+      var parameterInfo = new ParameterDetailsInfo { ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = false } } };
       var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
       object input = null;
 

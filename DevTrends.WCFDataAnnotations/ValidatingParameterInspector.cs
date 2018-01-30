@@ -13,15 +13,15 @@ namespace DevTrends.WCFDataAnnotations {
   public class ValidatingParameterInspector : IParameterInspector {
     private readonly IEnumerable<IObjectValidator> _validators;
     private readonly IErrorMessageGenerator _errorMessageGenerator;
-    private readonly ParameterInfo _parameterInfo;
+    private readonly ParameterDetailsInfo _parameterDetailsInfo;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidatingParameterInspector"/> class.
     /// </summary>
     /// <param name="validators">The validators.</param>
     /// <param name="errorMessageGenerator">The error message generator.</param>
-    /// <param name="parameterInfo">The parameter info object for the optional validator skipping.</param>
-    public ValidatingParameterInspector(IEnumerable<IObjectValidator> validators, IErrorMessageGenerator errorMessageGenerator, ParameterInfo parameterInfo = null) {
+    /// <param name="parameterDetailsInfo">The parameter info object for the optional validator skipping.</param>
+    public ValidatingParameterInspector(IEnumerable<IObjectValidator> validators, IErrorMessageGenerator errorMessageGenerator, ParameterDetailsInfo parameterDetailsInfo = null) {
       if (validators == null) {
         throw new ArgumentNullException("validators");
       }
@@ -36,7 +36,7 @@ namespace DevTrends.WCFDataAnnotations {
 
       _validators = validators;
       _errorMessageGenerator = errorMessageGenerator;
-      _parameterInfo = parameterInfo;
+      _parameterDetailsInfo = parameterDetailsInfo;
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ namespace DevTrends.WCFDataAnnotations {
     }
     
     private IEnumerable<IObjectValidator> GetValidators(int parameterPosition) {
-      return _parameterInfo != null && _parameterInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck 
+      return _parameterDetailsInfo != null && _parameterDetailsInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck 
         ? _validators.Where(x => !(x is NullCheckObjectValidator)) 
         : _validators;
     }
