@@ -53,7 +53,7 @@
     <Compile Include="IObjectValidator.cs" />
     <Compile Include="ParameterDetails.cs" />
     <Compile Include="ParameterDetailsInfo.cs" />
-    <Compile Include="SkipNullCheckAttribute.cs" />
+    <Compile Include="AllowNullAttribute.cs" />
     <Compile Include="ValidatableObjectValidator.cs" />
     <Compile Include="ValidateDataAnnotationsBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

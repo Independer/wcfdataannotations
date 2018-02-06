@@ -2,5 +2,5 @@
 
 namespace DevTrends.WCFDataAnnotations {
   [AttributeUsage(AttributeTargets.Parameter)]
-  public sealed class SkipNullCheckAttribute: Attribute { }
+  public sealed class AllowNullAttribute: Attribute { }
 }

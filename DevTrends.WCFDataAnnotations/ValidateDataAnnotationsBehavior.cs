@@ -100,7 +100,7 @@ namespace DevTrends.WCFDataAnnotations {
         var skipNullCheck = false;
 
         foreach (var customAttribute in parameter.GetCustomAttributes(inherit: false)) {
-          if (customAttribute is SkipNullCheckAttribute) {
+          if (customAttribute is AllowNullAttribute) {
             skipNullCheck = true;
           }
         }
