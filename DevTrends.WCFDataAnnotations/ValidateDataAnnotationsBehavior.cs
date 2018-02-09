@@ -23,11 +23,25 @@ namespace DevTrends.WCFDataAnnotations {
     ///     The list of _validators
     /// </summary>
     private readonly List<IObjectValidator> _validators;
-
+    
+    /// <summary>
+    ///     [Optional] Logger implementation for validation results
+    /// </summary>
+    private readonly IValidationResultsLogger _validationResultsLogger;
+    
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidateDataAnnotationsBehavior" /> class.
     /// </summary>
-    public ValidateDataAnnotationsBehavior() {
+    /// <param name="validationResultsLogger">Optional validation results logger. It has to implement the interface <see cref="IValidationResultsLogger"/></param>
+    public ValidateDataAnnotationsBehavior(Type validationResultsLogger = null) {
+      if (validationResultsLogger != null) {
+        if (!typeof(IValidationResultsLogger).IsAssignableFrom(validationResultsLogger)) {
+          throw new ArgumentException($"The type of {validationResultsLogger} doesn't implement the interface '{typeof(IValidationResultsLogger)}'!");
+        }
+
+        _validationResultsLogger = (IValidationResultsLogger)Activator.CreateInstance(validationResultsLogger);
+      }
+
       _validators = new List<IObjectValidator>
       {
         new NullCheckObjectValidator(),
@@ -37,7 +51,7 @@ namespace DevTrends.WCFDataAnnotations {
 
       var errorMessageGenerator = new ErrorMessageGenerator();
 
-      _defaultValidatingParameterInspector = new ValidatingParameterInspector(_validators, errorMessageGenerator);
+      _defaultValidatingParameterInspector = new ValidatingParameterInspector(_validators, errorMessageGenerator, _validationResultsLogger);
     }
 
     /// <summary>
@@ -72,7 +86,7 @@ namespace DevTrends.WCFDataAnnotations {
         var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
 
         operation.ParameterInspectors.Add(parameterInfo.HasAnyParameterSkipNullCheck
-          ? new ValidatingParameterInspector(_validators, new ErrorMessageGenerator(), parameterInfo)
+          ? new ValidatingParameterInspector(_validators, new ErrorMessageGenerator(), _validationResultsLogger, parameterInfo)
           : _defaultValidatingParameterInspector);
       }
     }
