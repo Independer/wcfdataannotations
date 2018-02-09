@@ -33,6 +33,7 @@ _ReSharper*/
 *.log*
 [Ss]ource*/
 [Ll]ogs
+.vs
 
 # NuGet Packages Directory
 packages
