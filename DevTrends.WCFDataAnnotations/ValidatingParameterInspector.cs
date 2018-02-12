@@ -52,8 +52,7 @@ namespace DevTrends.WCFDataAnnotations {
     /// <param name="correlationState">Any correlation state returned from the 
     /// <see cref="M:System.ServiceModel.Dispatcher.IParameterInspector.BeforeCall(System.String,System.Object[])" /> method, 
     /// or null.</param>
-    public void AfterCall(string operationName, object[] outputs, object returnValue, object correlationState) {
-    }
+    public void AfterCall(string operationName, object[] outputs, object returnValue, object correlationState) { }
 
     /// <summary>
     /// Called before client calls are sent and after service responses are returned.
@@ -85,10 +84,10 @@ namespace DevTrends.WCFDataAnnotations {
 
       return null;
     }
-    
+
     private IEnumerable<IObjectValidator> GetValidators(int parameterPosition) {
-      return _parameterDetailsInfo != null && _parameterDetailsInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck 
-        ? _validators.Where(x => !(x is NullCheckObjectValidator)) 
+      return _parameterDetailsInfo != null && _parameterDetailsInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck
+        ? _validators.Where(x => !(x is NullCheckObjectValidator))
         : _validators;
     }
   }
