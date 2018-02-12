@@ -23,7 +23,7 @@ namespace DevTrends.WCFDataAnnotations {
     /// <param name="parameterDetailsInfo">The parameter info object for the optional validator skipping.</param>
     public ValidatingParameterInspector(IEnumerable<IObjectValidator> validators, IErrorMessageGenerator errorMessageGenerator, ParameterDetailsInfo parameterDetailsInfo = null) {
       if (validators == null) {
-        throw new ArgumentNullException("validators");
+        throw new ArgumentNullException(nameof(validators));
       }
 
       if (!validators.Any()) {
@@ -31,7 +31,7 @@ namespace DevTrends.WCFDataAnnotations {
       }
 
       if (errorMessageGenerator == null) {
-        throw new ArgumentNullException("errorMessageGenerator");
+        throw new ArgumentNullException(nameof(errorMessageGenerator));
       }
 
       _validators = validators;
@@ -48,8 +48,7 @@ namespace DevTrends.WCFDataAnnotations {
     /// <param name="correlationState">Any correlation state returned from the 
     /// <see cref="M:System.ServiceModel.Dispatcher.IParameterInspector.BeforeCall(System.String,System.Object[])" /> method, 
     /// or null.</param>
-    public void AfterCall(string operationName, object[] outputs, object returnValue, object correlationState) {
-    }
+    public void AfterCall(string operationName, object[] outputs, object returnValue, object correlationState) { }
 
     /// <summary>
     /// Called before client calls are sent and after service responses are returned.
@@ -80,10 +79,10 @@ namespace DevTrends.WCFDataAnnotations {
 
       return null;
     }
-    
+
     private IEnumerable<IObjectValidator> GetValidators(int parameterPosition) {
-      return _parameterDetailsInfo != null && _parameterDetailsInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck 
-        ? _validators.Where(x => !(x is NullCheckObjectValidator)) 
+      return _parameterDetailsInfo != null && _parameterDetailsInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck
+        ? _validators.Where(x => !(x is NullCheckObjectValidator))
         : _validators;
     }
   }

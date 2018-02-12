@@ -67,7 +67,7 @@ namespace DevTrends.WCFDataAnnotations {
         select operation;
 
       var contractOperations = serviceHostBase.Description.Endpoints.SelectMany(x => x.Contract.Operations).ToList();
-      
+
       foreach (var operation in operations) {
         var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
 
@@ -93,7 +93,7 @@ namespace DevTrends.WCFDataAnnotations {
     /// <returns></returns>
     private ParameterDetailsInfo GetParameterInfo(string operationName, IEnumerable<OperationDescription> contractOperations) {
       var parameterInfo = new ParameterDetailsInfo();
-      
+
       var parameters = GetParameters(contractOperations.Single(x => x.Name == operationName));
 
       foreach (var parameter in parameters.OrderBy(x => x.Position)) {
@@ -117,7 +117,7 @@ namespace DevTrends.WCFDataAnnotations {
       if (method == null) {
         throw new InvalidOperationException("Either SyncMethod or TaskMethod should have a value!");
       }
-      
+
       return method.GetParameters();
     }
   }

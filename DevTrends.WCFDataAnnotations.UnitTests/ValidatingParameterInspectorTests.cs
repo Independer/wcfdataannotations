@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace DevTrends.WCFDataAnnotations.UnitTests {
   [TestFixture]
+  [Category(nameof(ValidatingParameterInspectorTests))]
   public class ValidatingParameterInspectorTests {
     private const string OperationName = "DoSomething";
 
@@ -119,7 +120,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_SkipNullCheck() {
-      var parameterInfo = new ParameterDetailsInfo {ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = true }}};
+      var parameterInfo = new ParameterDetailsInfo { ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = true } } };
       var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
       object input = null;
       inspector.BeforeCall(OperationName, new[] { input });
@@ -164,7 +165,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
     public void BeforeCall_Throws_Exception_On_Null_When_No_SkipNullCheck_Defined() {
       var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object);
       object input = null;
-      
+
       Assert.Throws<FaultException>(
         () => inspector.BeforeCall(OperationName, new[] { input }));
     }
