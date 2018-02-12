@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IValidationResultsLogger.cs" />
     <Compile Include="NullCheckObjectValidator.cs" />
     <Compile Include="DataAnnotationsObjectValidator.cs" />
     <Compile Include="ErrorMessageGenerator.cs" />
