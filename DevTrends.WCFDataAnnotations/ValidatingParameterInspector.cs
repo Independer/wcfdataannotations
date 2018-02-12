@@ -14,14 +14,18 @@ namespace DevTrends.WCFDataAnnotations {
     private readonly IEnumerable<IObjectValidator> _validators;
     private readonly IErrorMessageGenerator _errorMessageGenerator;
     private readonly ParameterDetailsInfo _parameterDetailsInfo;
+    private readonly IValidationResultsLogger _validationResultsLogger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidatingParameterInspector"/> class.
     /// </summary>
     /// <param name="validators">The validators.</param>
     /// <param name="errorMessageGenerator">The error message generator.</param>
+    /// <param name="validationResultsLogger">[Optional] The validation results logger</param>
     /// <param name="parameterDetailsInfo">The parameter info object for the optional validator skipping.</param>
-    public ValidatingParameterInspector(IEnumerable<IObjectValidator> validators, IErrorMessageGenerator errorMessageGenerator, ParameterDetailsInfo parameterDetailsInfo = null) {
+    public ValidatingParameterInspector(IEnumerable<IObjectValidator> validators, IErrorMessageGenerator errorMessageGenerator, IValidationResultsLogger validationResultsLogger = null, ParameterDetailsInfo parameterDetailsInfo = null) {
+      _validationResultsLogger = validationResultsLogger;
+
       if (validators == null) {
         throw new ArgumentNullException(nameof(validators));
       }
@@ -74,6 +78,7 @@ namespace DevTrends.WCFDataAnnotations {
       }
 
       if (validationResults.Count > 0) {
+        _validationResultsLogger?.LogValidationResults(operationName, validationResults);
         throw new FaultException(_errorMessageGenerator.GenerateErrorMessage(operationName, validationResults));
       }
 

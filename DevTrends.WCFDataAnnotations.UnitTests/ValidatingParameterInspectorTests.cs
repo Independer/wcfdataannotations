@@ -112,6 +112,24 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
     }
 
     [Test]
+    public void BeforeCall_Call_Logger_And_Throw_Exception_Using_ErrorMessageGenerator_ReturnValue_When_Validator_Returns_ValidationResult() {
+      const string errorMessage = "something really bad";
+
+      var validationResults = new List<ValidationResult> { new ValidationResult("something bad") };
+      _singleValidatorMock.Setup(x => x.Validate(It.IsAny<object>())).Returns(validationResults);
+
+      _errorMessageGeneratorMock.Setup(x => x.GenerateErrorMessage(OperationName, validationResults)).Returns(errorMessage);
+
+      var loggerMock = new Mock<IValidationResultsLogger>();
+      loggerMock.Setup(x => x.LogValidationResults(OperationName, validationResults));
+
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, loggerMock.Object);
+
+      Assert.Throws<FaultException>(() => inspector.BeforeCall(OperationName, new[] { new object() }));
+      loggerMock.Verify(x => x.LogValidationResults(OperationName, validationResults), Times.Once());
+    }
+
+    [Test]
     public void BeforeCall_Returns_Null_When_Valid() {
       var result = _singleValidatorParameterInspector.BeforeCall(OperationName, new[] { new object() });
 
@@ -121,7 +139,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
     [Test]
     public void BeforeCall_SkipNullCheck() {
       var parameterInfo = new ParameterDetailsInfo { ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = true } } };
-      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, null, parameterInfo);
       object input = null;
       inspector.BeforeCall(OperationName, new[] { input });
       _singleValidatorMock.Verify(x => x.Validate(input), Times.Once());
@@ -136,7 +154,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
           new ParameterDetails { Name = "test3", Position = 2, SkipNullcheck = false }
         }
       };
-      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, null, parameterInfo);
       object input1 = new object();
       object input2 = null;
       object input3 = "test";
@@ -152,7 +170,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
           new ParameterDetails { Name = "test3", Position = 2, SkipNullcheck = false }
         }
       };
-      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, null, parameterInfo);
       object input1 = new object();
       object input2 = "test";
       object input3 = null;
@@ -173,7 +191,7 @@ namespace DevTrends.WCFDataAnnotations.UnitTests {
     [Test]
     public void BeforeCall_Throws_Exception_On_Null_When_No_SkipNullCheck_Defined_But_ParameterInfo_Passed() {
       var parameterInfo = new ParameterDetailsInfo { ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = false } } };
-      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, parameterInfo);
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, null, parameterInfo);
       object input = null;
 
       Assert.Throws<FaultException>(
