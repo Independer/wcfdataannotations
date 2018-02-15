@@ -15,11 +15,6 @@ namespace Independer.WCFDataAnnotations {
   [AttributeUsage(AttributeTargets.Class)]
   public class ValidateDataAnnotationsBehavior : Attribute, IServiceBehavior {
     /// <summary>
-    ///     The default _validating parameter inspector
-    /// </summary>
-    private readonly IParameterInspector _defaultValidatingParameterInspector;
-
-    /// <summary>
     ///     The list of _validators
     /// </summary>
     private readonly List<IObjectValidator> _validators;
@@ -48,10 +43,6 @@ namespace Independer.WCFDataAnnotations {
         new DataAnnotationsObjectValidator(),
         new ValidatableObjectValidator()
       };
-
-      var errorMessageGenerator = new ErrorMessageGenerator();
-
-      _defaultValidatingParameterInspector = new ValidatingParameterInspector(_validators, errorMessageGenerator, _validationResultsLogger);
     }
 
     /// <summary>
@@ -82,12 +73,12 @@ namespace Independer.WCFDataAnnotations {
 
       var contractOperations = serviceHostBase.Description.Endpoints.SelectMany(x => x.Contract.Operations).ToList();
 
+      var errorMessageGenerator = new ErrorMessageGenerator();
+
       foreach (var operation in operations) {
         var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
 
-        operation.ParameterInspectors.Add(parameterInfo.HasAnyParameterSkipNullCheck
-          ? new ValidatingParameterInspector(_validators, new ErrorMessageGenerator(), _validationResultsLogger, parameterInfo)
-          : _defaultValidatingParameterInspector);
+        operation.ParameterInspectors.Add(new ValidatingParameterInspector(_validators, errorMessageGenerator, _validationResultsLogger, parameterInfo));
       }
     }
 

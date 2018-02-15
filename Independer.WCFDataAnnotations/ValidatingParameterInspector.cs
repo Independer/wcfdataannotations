@@ -97,9 +97,9 @@ namespace Independer.WCFDataAnnotations {
       var extendedValidationResults = new List<ValidationResult>();
 
       foreach (var validationResult in validationResults) {
-        if (validationResult.MemberNames == null || !validationResult.MemberNames.Any()) {
-          extendedValidationResults.Add(new ValidationResult(validationResult.ErrorMessage, new List<string> { parameterName }));
-        }
+        extendedValidationResults.Add(validationResult.MemberNames == null || !validationResult.MemberNames.Any() 
+          ? new ValidationResult(validationResult.ErrorMessage, new List<string> { parameterName }) 
+          : validationResult);
       }
 
       return extendedValidationResults;
