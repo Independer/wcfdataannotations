@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   /// <summary>
   /// Generates an error message for an operation based on the validation results
   /// </summary>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   public class ParameterDetailsInfo {
     public List<ParameterDetails> ParameterDetails { get; set; }
 

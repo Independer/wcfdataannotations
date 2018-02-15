@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   /// <summary>
   /// Validates objects to ensure they are not null
   /// </summary>

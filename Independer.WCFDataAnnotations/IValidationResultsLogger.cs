@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   public interface IValidationResultsLogger {
     void LogValidationResults(string operationName, IEnumerable<ValidationResult> validationResults);
   }

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Dispatcher;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   /// <summary>
   /// Validates incoming parameters using Data Annotations before executing
   /// the service operation call
@@ -70,9 +71,12 @@ namespace DevTrends.WCFDataAnnotations {
       var validationResults = new List<ValidationResult>();
 
       foreach (var input in inputs) {
-        foreach (var validator in GetValidators(parameterPosition)) {
+        var parameterDetails = GetParameterDetails(parameterPosition);
+
+        foreach (var validator in GetValidators(parameterDetails)) {
           var results = validator.Validate(input);
-          validationResults.AddRange(results);
+          
+          validationResults.AddRange(AddParameterNamesWhenMissing(results, parameterDetails?.Name));
         }
         parameterPosition++;
       }
@@ -85,8 +89,32 @@ namespace DevTrends.WCFDataAnnotations {
       return null;
     }
 
-    private IEnumerable<IObjectValidator> GetValidators(int parameterPosition) {
-      return _parameterDetailsInfo != null && _parameterDetailsInfo.ParameterDetails.Single(x => x.Position == parameterPosition).SkipNullcheck
+    private IEnumerable<ValidationResult> AddParameterNamesWhenMissing(IEnumerable<ValidationResult> validationResults, string parameterName) {
+      if (validationResults == null || !validationResults.Any() || String.IsNullOrWhiteSpace(parameterName)) {
+        return validationResults;
+      }
+
+      var extendedValidationResults = new List<ValidationResult>();
+
+      foreach (var validationResult in validationResults) {
+        if (validationResult.MemberNames == null || !validationResult.MemberNames.Any()) {
+          extendedValidationResults.Add(new ValidationResult(validationResult.ErrorMessage, new List<string> { parameterName }));
+        }
+      }
+
+      return extendedValidationResults;
+    }
+
+    private ParameterDetails GetParameterDetails(int parameterPosition) {
+      return _parameterDetailsInfo?.ParameterDetails.Single(x => x.Position == parameterPosition);
+    }
+
+    private IEnumerable<IObjectValidator> GetValidators(ParameterDetails parameterDetails) {
+      if (parameterDetails == null) {
+        throw new ArgumentNullException(nameof(parameterDetails));
+      }
+
+      return parameterDetails.SkipNullcheck
         ? _validators.Where(x => !(x is NullCheckObjectValidator))
         : _validators;
     }

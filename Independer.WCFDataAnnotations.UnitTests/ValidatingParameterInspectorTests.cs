@@ -6,7 +6,7 @@ using System.ServiceModel;
 using Moq;
 using NUnit.Framework;
 
-namespace DevTrends.WCFDataAnnotations.UnitTests {
+namespace Independer.WCFDataAnnotations.UnitTests {
   [TestFixture]
   [Category(nameof(ValidatingParameterInspectorTests))]
   public class ValidatingParameterInspectorTests {

@@ -8,8 +8,8 @@
     <ProjectGuid>{ADA5C939-0C93-4DE6-AC70-8227214C9878}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTrends.WCFDataAnnotations.UnitTests</RootNamespace>
-    <AssemblyName>DevTrends.WCFDataAnnotations.UnitTests</AssemblyName>
+    <RootNamespace>Independer.WCFDataAnnotations.UnitTests</RootNamespace>
+    <AssemblyName>Independer.WCFDataAnnotations.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -68,9 +68,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DevTrends.WCFDataAnnotations\DevTrends.WCFDataAnnotations.csproj">
+    <ProjectReference Include="..\Independer.WCFDataAnnotations\Independer.WCFDataAnnotations.csproj">
       <Project>{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}</Project>
-      <Name>DevTrends.WCFDataAnnotations</Name>
+      <Name>Independer.WCFDataAnnotations</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

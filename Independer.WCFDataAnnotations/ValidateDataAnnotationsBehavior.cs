@@ -8,7 +8,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   /// <summary>
   /// Validates inputs using Data Annotations
   /// </summary>

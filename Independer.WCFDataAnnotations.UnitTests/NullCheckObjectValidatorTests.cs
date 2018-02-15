@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 
-namespace DevTrends.WCFDataAnnotations.UnitTests {
+namespace Independer.WCFDataAnnotations.UnitTests {
   [TestFixture]
   [Category(nameof(NullCheckObjectValidatorTests))]
   public class NullCheckObjectValidatorTests {
