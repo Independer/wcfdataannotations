@@ -1,4 +1,4 @@
-# WCF Data Annotations - Extended
+# WCF Data Annotations - Extended [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations)
 
 WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.
 
