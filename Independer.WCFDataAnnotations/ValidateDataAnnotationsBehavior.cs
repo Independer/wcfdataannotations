@@ -73,6 +73,8 @@ namespace Independer.WCFDataAnnotations {
 
       var contractOperations = serviceHostBase.Description.Endpoints.SelectMany(x => x.Contract.Operations).ToList();
 
+      operations = operations.Where(op => contractOperations.Any(co => co.Name == op.Name));
+	  
       var errorMessageGenerator = new ErrorMessageGenerator();
 
       foreach (var operation in operations) {
