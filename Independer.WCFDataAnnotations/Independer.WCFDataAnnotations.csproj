@@ -8,8 +8,8 @@
     <ProjectGuid>{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevTrends.WCFDataAnnotations</RootNamespace>
-    <AssemblyName>DevTrends.WCFDataAnnotations</AssemblyName>
+    <RootNamespace>Independer.WCFDataAnnotations</RootNamespace>
+    <AssemblyName>Independer.WCFDataAnnotations</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

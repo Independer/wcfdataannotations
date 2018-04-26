@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel.Configuration;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   /// <summary>
   /// Extension for creating a <see cref="ValidateDataAnnotationsBehavior"/> through
   /// configuration

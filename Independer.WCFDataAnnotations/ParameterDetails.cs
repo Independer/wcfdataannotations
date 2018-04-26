@@ -1,4 +1,4 @@
-﻿namespace DevTrends.WCFDataAnnotations {
+﻿namespace Independer.WCFDataAnnotations {
   public class ParameterDetails {
     public string Name { get; set; }
 

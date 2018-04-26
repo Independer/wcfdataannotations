@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using NUnit.Framework;
 
-namespace DevTrends.WCFDataAnnotations.UnitTests {
+namespace Independer.WCFDataAnnotations.UnitTests {
   [TestFixture]
   [Category(nameof(ErrorMessageGeneratorTests))]
   public class ErrorMessageGeneratorTests {

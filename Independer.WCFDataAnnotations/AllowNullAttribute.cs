@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DevTrends.WCFDataAnnotations {
+namespace Independer.WCFDataAnnotations {
   [AttributeUsage(AttributeTargets.Parameter)]
   public sealed class AllowNullAttribute: Attribute { }
 }

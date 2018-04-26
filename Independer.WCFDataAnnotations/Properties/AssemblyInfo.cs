@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DevTrends.WCFDataAnnotations")]
-[assembly: AssemblyDescription("WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the validation attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.")]
+[assembly: AssemblyTitle("Independer.WCFDataAnnotations")]
+[assembly: AssemblyDescription("Extended and improved version of the original DevTrends.WCFDataAnnotations library. WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the validation attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DevTrends")]
-[assembly: AssemblyProduct("DevTrends.WCFDataAnnotations")]
-[assembly: AssemblyCopyright("Copyright © DevTrends 2011")]
+[assembly: AssemblyCompany("Independer")]
+[assembly: AssemblyProduct("Independer.WCFDataAnnotations")]
+[assembly: AssemblyCopyright("Copyright © Independer 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("156baae0-cdd6-4d24-8447-6fee874de1e3")]
+[assembly: Guid("94dd3680-9cc0-41f1-8766-1583a3ee64d2")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
