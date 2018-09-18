@@ -57,5 +57,7 @@ public interface ITestService {
 ## Strong Named version [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations-Signed.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations-Signed)
 There is a signed version also available on NuGet which is identical to the normal package in terms of source code.
 
+The `PublicKeyToken` of the signed version is: `656e010cba88e92b`
+
 ## Credit
 This repository is a fork of the DevTrends WCF DataAnnotations repository (https://wcfdataannotations.codeplex.com/)
