@@ -1,4 +1,4 @@
-# WCF Data Annotations - Extended [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations)
+# WCF Data Annotations - Extended [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations) 
 
 WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.
 
@@ -53,6 +53,9 @@ public interface ITestService {
   CompositeType GetDataUsingDataContract(CompositeType composite, [AllowNull] CompositeType nullableType);
 }
 ```
+
+## Strong Named version [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations-Signed.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations-Signed)
+There is a signed version also available on NuGet which is identical to the normal package in terms of source code.
 
 ## Credit
 This repository is a fork of the DevTrends WCF DataAnnotations repository (https://wcfdataannotations.codeplex.com/)
