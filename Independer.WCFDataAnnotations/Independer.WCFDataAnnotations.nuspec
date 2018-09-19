@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>$id$-Signed</id>
     <version>$version$</version>
-    <title>$title$</title>
+    <title>$title$-Signed</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://github.com/Independer/wcfdataannotations/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Independer/wcfdataannotations</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial packaged version of the improved WCF Data Annotations</releaseNotes>
+    <releaseNotes>Signed version of the Independer.WCFDataAnnotations library which can be used in strong named assemblies</releaseNotes>
     <copyright>Copyright 2018 Independer.nl N.V.</copyright>
-    <tags>WCF validation dataannotation annotation wcfdataannotation</tags>
+    <tags>WCF validation dataannotation annotation wcfdataannotation signed</tags>
   </metadata>
 </package>
