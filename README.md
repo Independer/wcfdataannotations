@@ -60,4 +60,6 @@ There is a signed version also available on NuGet which is identical to the norm
 The `PublicKeyToken` of the signed version is: `656e010cba88e92b`
 
 ## Credit
-This repository is a fork of the DevTrends WCF DataAnnotations repository (https://wcfdataannotations.codeplex.com/)
+This repository is a fork of the DevTrends WCF DataAnnotations repository (https://wcfdataannotations.codeplex.com/ (https://archive.codeplex.com/?p=wcfdataannotations))
+
+For more information about how DevTrends WCF Data Annotations worked and the design decisions behind it, please visit the: https://www.devtrends.co.uk/blog/validating-wcf-service-operations-using-system.componentmodel.dataannotations
