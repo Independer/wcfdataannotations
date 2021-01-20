@@ -95,12 +95,12 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       Assert.That(result.Count, Is.EqualTo(6));
 
-      Assert.That(result[0].ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Properties1")));
-      Assert.That(result[1].ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Property1")));
-      Assert.That(result[2].ErrorMessage, Is.StringContaining(string.Format(RegexErrorMessage, "Property2")));
-      Assert.That(result[3].ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Property1")));
-      Assert.That(result[4].ErrorMessage, Is.StringContaining(string.Format(RegexErrorMessage, "Property2")));
-      Assert.That(result[5].ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Property3")));
+      Assert.That(result[0].ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Properties1")));
+      Assert.That(result[1].ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Property1")));
+      Assert.That(result[2].ErrorMessage, Does.Contain(string.Format(RegexErrorMessage, "Property2")));
+      Assert.That(result[3].ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Property1")));
+      Assert.That(result[4].ErrorMessage, Does.Contain(string.Format(RegexErrorMessage, "Property2")));
+      Assert.That(result[5].ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Property3")));
     }
 
     [Test]
@@ -113,8 +113,8 @@ namespace Independer.WCFDataAnnotations.UnitTests {
           }).ToList();
 
       Assert.That(result.Count, Is.EqualTo(2));
-      Assert.That(result[0].ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Property3")));
-      Assert.That(result[1].ErrorMessage, Is.StringContaining(string.Format(RangeErrorMessage, "Property4", 1, 10)));
+      Assert.That(result[0].ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Property3")));
+      Assert.That(result[1].ErrorMessage, Does.Contain(string.Format(RangeErrorMessage, "Property4", 1, 10)));
     }
 
     [Test]
@@ -122,7 +122,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
       var result = _validator.Validate(new TestClass { Property1 = null, Property2 = "12345" });
 
       Assert.That(result.Count(), Is.EqualTo(1));
-      Assert.That(result.First().ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Property1")));
+      Assert.That(result.First().ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Property1")));
     }
 
     [Test]
@@ -130,8 +130,8 @@ namespace Independer.WCFDataAnnotations.UnitTests {
       var result = _validator.Validate(new TestClass { Property1 = null, Property2 = "test" }).ToList();
 
       Assert.That(result.Count, Is.EqualTo(2));
-      Assert.That(result[0].ErrorMessage, Is.StringContaining(string.Format(RequiredErrorMessage, "Property1")));
-      Assert.That(result[1].ErrorMessage, Is.StringContaining(string.Format(RegexErrorMessage, "Property2")));
+      Assert.That(result[0].ErrorMessage, Does.Contain(string.Format(RequiredErrorMessage, "Property1")));
+      Assert.That(result[1].ErrorMessage, Does.Contain(string.Format(RegexErrorMessage, "Property2")));
     }
 
 
@@ -141,7 +141,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
       
       Assert.That(result, Is.Not.Null);
       Assert.That(result.Count(), Is.EqualTo(1));
-      Assert.That(result.First().ErrorMessage, Is.StringContaining("ERROR ERROR"));
+      Assert.That(result.First().ErrorMessage, Does.Contain("ERROR ERROR"));
     }
 
     [Test]
