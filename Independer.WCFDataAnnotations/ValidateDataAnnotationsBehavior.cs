@@ -18,12 +18,12 @@ namespace Independer.WCFDataAnnotations {
     ///     The list of _validators
     /// </summary>
     private readonly List<IObjectValidator> _validators;
-    
+
     /// <summary>
     ///     [Optional] Logger implementation for validation results
     /// </summary>
     private readonly IValidationResultsLogger _validationResultsLogger;
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidateDataAnnotationsBehavior" /> class.
     /// </summary>
@@ -71,16 +71,18 @@ namespace Independer.WCFDataAnnotations {
         from operation in endpoint.DispatchRuntime.Operations
         select operation;
 
-      var contractOperations = serviceHostBase.Description.Endpoints.SelectMany(x => x.Contract.Operations).ToList();
+      foreach (var endpoint in serviceHostBase.Description.Endpoints) {
+        var contractOperations = endpoint.Contract.Operations.ToList();
 
-      operations = operations.Where(op => contractOperations.Any(co => co.Name == op.Name));
-	  
-      var errorMessageGenerator = new ErrorMessageGenerator();
+        operations = operations.Where(op => contractOperations.Any(co => co.Name == op.Name));
 
-      foreach (var operation in operations) {
-        var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
+        var errorMessageGenerator = new ErrorMessageGenerator();
 
-        operation.ParameterInspectors.Add(new ValidatingParameterInspector(_validators, errorMessageGenerator, _validationResultsLogger, parameterInfo));
+        foreach (var operation in operations) {
+          var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
+
+          operation.ParameterInspectors.Add(new ValidatingParameterInspector(_validators, errorMessageGenerator, _validationResultsLogger, parameterInfo));
+        }
       }
     }
 
