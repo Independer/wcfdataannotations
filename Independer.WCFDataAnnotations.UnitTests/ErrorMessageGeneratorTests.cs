@@ -35,7 +35,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
     public void GenerateErrorMessage_Result_Contains_OperationName() {
       var result = _errorMessageGenerator.GenerateErrorMessage(OperationName, new[] { new ValidationResult("test") });
 
-      Assert.That(result, Is.StringContaining(OperationName));
+      Assert.That(result, Does.Contain(OperationName));
     }
 
     [Test]
@@ -44,7 +44,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       var result = _errorMessageGenerator.GenerateErrorMessage(OperationName, new[] { validationResult });
 
-      Assert.That(result, Is.StringContaining(validationResult.ErrorMessage));
+      Assert.That(result, Does.Contain(validationResult.ErrorMessage));
     }
 
     [Test]
@@ -54,8 +54,8 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       var result = _errorMessageGenerator.GenerateErrorMessage(OperationName, new[] { validationResult, validationResult2 });
 
-      Assert.That(result, Is.StringContaining(validationResult.ErrorMessage));
-      Assert.That(result, Is.StringContaining(validationResult2.ErrorMessage));
+      Assert.That(result, Does.Contain(validationResult.ErrorMessage));
+      Assert.That(result, Does.Contain(validationResult2.ErrorMessage));
     }
   }
 }

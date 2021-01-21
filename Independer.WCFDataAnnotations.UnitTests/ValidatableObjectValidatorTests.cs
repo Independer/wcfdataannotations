@@ -45,7 +45,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       Assert.That(result, Is.Not.Null);
       Assert.That(result.Count(), Is.EqualTo(1));
-      Assert.That(result.First().ErrorMessage, Is.StringContaining(ErrorMessage));
+      Assert.That(result.First().ErrorMessage, Does.Contain(ErrorMessage));
     }
 
     [Test]
@@ -54,7 +54,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       Assert.That(result, Is.Not.Null);
       Assert.That(result.Count(), Is.EqualTo(1));
-      Assert.That(result.First().ErrorMessage, Is.StringContaining(ErrorMessage));
+      Assert.That(result.First().ErrorMessage, Does.Contain(ErrorMessage));
     }
 
     [Test]
@@ -63,7 +63,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       Assert.That(result, Is.Not.Null);
       Assert.That(result.Count(), Is.EqualTo(2));
-      Assert.That(result.First().ErrorMessage, Is.StringContaining(ErrorMessage));
+      Assert.That(result.First().ErrorMessage, Does.Contain(ErrorMessage));
     }
 
     [Test]
@@ -79,7 +79,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
       Assert.That(result, Is.Not.Null);
       Assert.That(result.Count(), Is.EqualTo(2));
-      Assert.That(result.First().ErrorMessage, Is.StringContaining(ErrorMessage));
+      Assert.That(result.First().ErrorMessage, Does.Contain(ErrorMessage));
     }
 
     private class ValidValidatableObject : IValidatableObject {
