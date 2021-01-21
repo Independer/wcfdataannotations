@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/Independer/wcfdataannotations</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Signed version of the Independer.WCFDataAnnotations library which can be used in strong named assemblies</releaseNotes>
+    <releaseNotes>Signed version of the Independer.WCFDataAnnotations library which can be used in strong named assemblies. - Validate Data Annotations Validation Attributes applied to properties down the entire object graph</releaseNotes>
     <copyright>Copyright 2018 Independer.nl N.V.</copyright>
-    <tags>WCF validation dataannotation annotation wcfdataannotation signed</tags>
+    <tags>WCF validation dataannotation annotation wcfdataannotation servicebehavior componentmodel signed</tags>
   </metadata>
 </package>

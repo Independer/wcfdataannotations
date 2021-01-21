@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ServiceModel;
+using Independer.WCFDataAnnotations.UnitTests.Helpers;
 using Moq;
 using NUnit.Framework;
 
@@ -18,8 +19,12 @@ namespace Independer.WCFDataAnnotations.UnitTests {
     private ValidatingParameterInspector _singleValidatorParameterInspector;
     private ValidatingParameterInspector _multipleValidatorsParameterInspector;
 
+    private ParameterDetailsInfo _defaultParameterDetailsInfo;
+
     [SetUp]
     public void Setup() {
+      _defaultParameterDetailsInfo = new ParameterDetailsInfo { ParameterDetails = new List<ParameterDetails> { new ParameterDetails { Name = "test", Position = 0, SkipNullcheck = false }, new ParameterDetails { Name = "test2", Position = 1, SkipNullcheck = false } } };
+
       _singleValidatorMock = new Mock<IObjectValidator>();
       _singleValidatorMock.Setup(x => x.Validate(It.IsAny<object>())).Returns(Enumerable.Empty<ValidationResult>());
 
@@ -27,8 +32,8 @@ namespace Independer.WCFDataAnnotations.UnitTests {
       _secondValidatorMock.Setup(x => x.Validate(It.IsAny<object>())).Returns(Enumerable.Empty<ValidationResult>());
 
       _errorMessageGeneratorMock = new Mock<IErrorMessageGenerator>();
-      _singleValidatorParameterInspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object }, _errorMessageGeneratorMock.Object);
-      _multipleValidatorsParameterInspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object }, _errorMessageGeneratorMock.Object);
+      _singleValidatorParameterInspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object }, _errorMessageGeneratorMock.Object, null , _defaultParameterDetailsInfo);
+      _multipleValidatorsParameterInspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object }, _errorMessageGeneratorMock.Object, null, _defaultParameterDetailsInfo);
     }
 
     [Test]
@@ -83,7 +88,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_Calls_ErrorMessageGenerator_When_Validator_Returns_ValidationResult() {
-      var validationResults = new List<ValidationResult> { new ValidationResult("something bad") };
+      var validationResults = new List<ValidationResult> { new ValidationResult("something bad", new[] { "test" }) };
       _singleValidatorMock.Setup(x => x.Validate(It.IsAny<object>())).Returns(validationResults);
 
       try {
@@ -93,14 +98,14 @@ namespace Independer.WCFDataAnnotations.UnitTests {
         // suppress
       }
 
-      _errorMessageGeneratorMock.Verify(x => x.GenerateErrorMessage(OperationName, validationResults), Times.Once());
+      _errorMessageGeneratorMock.Verify(x => x.GenerateErrorMessage(OperationName, MoqParameter.ShouldBeEquivalentTo(validationResults)), Times.Once());
     }
 
     [Test]
     public void BeforeCall_Throw_Exception_Using_ErrorMessageGenerator_ReturnValue_When_Validator_Returns_ValidationResult() {
       const string errorMessage = "something really bad";
 
-      var validationResults = new List<ValidationResult> { new ValidationResult("something bad") };
+      var validationResults = new List<ValidationResult> { new ValidationResult("something bad", new []{ "test" }) };
       _singleValidatorMock.Setup(x => x.Validate(It.IsAny<object>())).Returns(validationResults);
 
       _errorMessageGeneratorMock.Setup(x => x.GenerateErrorMessage(OperationName, validationResults)).Returns(errorMessage);
@@ -115,18 +120,18 @@ namespace Independer.WCFDataAnnotations.UnitTests {
     public void BeforeCall_Call_Logger_And_Throw_Exception_Using_ErrorMessageGenerator_ReturnValue_When_Validator_Returns_ValidationResult() {
       const string errorMessage = "something really bad";
 
-      var validationResults = new List<ValidationResult> { new ValidationResult("something bad") };
+      var validationResults = new List<ValidationResult> { new ValidationResult("something bad", new[] { "test" }) };
       _singleValidatorMock.Setup(x => x.Validate(It.IsAny<object>())).Returns(validationResults);
 
       _errorMessageGeneratorMock.Setup(x => x.GenerateErrorMessage(OperationName, validationResults)).Returns(errorMessage);
 
       var loggerMock = new Mock<IValidationResultsLogger>();
-      loggerMock.Setup(x => x.LogValidationResults(OperationName, validationResults));
+      loggerMock.Setup(x => x.LogValidationResults(OperationName,MoqParameter.ShouldBeEquivalentTo(validationResults)));
 
-      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, loggerMock.Object);
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, loggerMock.Object, _defaultParameterDetailsInfo);
 
       Assert.Throws<FaultException>(() => inspector.BeforeCall(OperationName, new[] { new object() }));
-      loggerMock.Verify(x => x.LogValidationResults(OperationName, validationResults), Times.Once());
+      loggerMock.Verify(x => x.LogValidationResults(OperationName, MoqParameter.ShouldBeEquivalentTo(validationResults)), Times.Once());
     }
 
     [Test]
@@ -181,7 +186,7 @@ namespace Independer.WCFDataAnnotations.UnitTests {
 
     [Test]
     public void BeforeCall_Throws_Exception_On_Null_When_No_SkipNullCheck_Defined() {
-      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object);
+      var inspector = new ValidatingParameterInspector(new[] { _singleValidatorMock.Object, _secondValidatorMock.Object, new NullCheckObjectValidator() }, _errorMessageGeneratorMock.Object, null, _defaultParameterDetailsInfo);
       object input = null;
 
       Assert.Throws<FaultException>(
