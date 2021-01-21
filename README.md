@@ -59,6 +59,23 @@ There is a signed version also available on NuGet which is identical to the norm
 
 The `PublicKeyToken` of the signed version is: `656e010cba88e92b`
 
+## Version history
+
+ * 1.2.0 
+   * Bug fixes: 
+     * Fixed issue regarding using multiple endpoints with the same contract
+     
+ * 1.1.0 
+   * Bug fixes: 
+     * Fixed issue when injecting behavior with ServiceConfiguration in code
+     
+   * Enhancements: 
+     * Added parameter name to validation results when missing 
+     * Namespace change for better recognition of the fork in code
+      
+ * 1.0.0 
+   * Initial version
+
 ## Credit
 This repository is a fork of the DevTrends WCF DataAnnotations repository (https://wcfdataannotations.codeplex.com/ (https://archive.codeplex.com/?p=wcfdataannotations))
 
