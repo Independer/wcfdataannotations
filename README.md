@@ -61,6 +61,9 @@ The `PublicKeyToken` of the signed version is: `656e010cba88e92b`
 
 ## Version history
 
+ * 1.2.0.1 (Only for the Strong Named version)
+   * 1.2.0 for Strong Named Nuget feed was published accidentally without being signed, so published 1.2.0.1 signed
+
  * 1.2.0 
    * Bug fixes: 
      * Fixed issue regarding using multiple endpoints with the same contract
