@@ -1,72 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5BD4EAA0-4782-4E75-AD6C-5753BA2D0A91}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Independer.WCFDataAnnotations</RootNamespace>
-    <AssemblyName>Independer.WCFDataAnnotations</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="IValidationResultsLogger.cs" />
-    <Compile Include="NullCheckObjectValidator.cs" />
-    <Compile Include="DataAnnotationsObjectValidator.cs" />
-    <Compile Include="ErrorMessageGenerator.cs" />
-    <Compile Include="IErrorMessageGenerator.cs" />
-    <Compile Include="IObjectValidator.cs" />
-    <Compile Include="ParameterDetails.cs" />
-    <Compile Include="ParameterDetailsInfo.cs" />
-    <Compile Include="AllowNullAttribute.cs" />
-    <Compile Include="ValidatableObjectValidator.cs" />
-    <Compile Include="ValidateDataAnnotationsBehavior.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidateDataAnnotationsBehaviorExtensionElement.cs" />
-    <Compile Include="ValidatingParameterInspector.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
+		<PackageId>Independer.WCFDataAnnotations</PackageId>
+		<Authors>Independer</Authors>
+		<Description>Extended and improved version of the original DevTrends.WCFDataAnnotations library. WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the validation attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.</Description>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<VersionPrefix>1.3.0</VersionPrefix>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/Independer/wcfdataannotations</PackageProjectUrl>
+		<PackageReleaseNotes>The improved WCF Data Annotations. Validate Data Annotations Validation Attributes applied to properties down the entire object graph</PackageReleaseNotes>
+		<Copyright>Copyright © Independer 2021</Copyright>
+		<PackageTags>WCF validation dataannotation annotation wcfdataannotation servicebehavior componentmodel</PackageTags>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="System.ComponentModel" Version="4.3.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+		<PackageReference Include="System.ServiceModel.Primitives" Version="4.8.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="../LICENSE" Pack="true" PackagePath="" />
+	</ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET472
+using System;
 using System.ServiceModel.Configuration;
 
 namespace Independer.WCFDataAnnotations {
@@ -23,3 +24,4 @@ namespace Independer.WCFDataAnnotations {
     }
   }
 }
+#endif

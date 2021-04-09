@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET472
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -131,3 +132,4 @@ namespace Independer.WCFDataAnnotations {
     }
   }
 }
+#endif
