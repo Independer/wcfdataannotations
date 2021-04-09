@@ -1,4 +1,4 @@
-# WCF Data Annotations - Extended [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations) 
+# WCF Data Annotations - Extended, signed [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations) 
 
 WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.
 
@@ -54,10 +54,20 @@ public interface ITestService {
 }
 ```
 
-## Strong Named version [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations-Signed.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations-Signed)
+## Strong Named (signed) version [![NuGet](https://img.shields.io/nuget/v/Independer.WCFDataAnnotations-Signed.svg)](https://www.nuget.org/packages/Independer.WCFDataAnnotations-Signed)
 There is a signed version also available on NuGet which is identical to the normal package in terms of source code.
 
 The `PublicKeyToken` of the signed version is: `656e010cba88e92b`
+
+### Update (v1.3.0)
+The original version of this package has been started as a non signed package and later on we introduced a signed version of it as a separate package with the only difference of having it signed.
+
+We don't see any reason to keep these two versions as separate packages, so decided that we sign the main package also.
+
+Therefore, from version `1.3.0` there is no point in keeping the `Independer.WCFDataAnnotations-Signed` package maintained anymore.
+
+If you used that package previously, you can migrate and continue using the main package (`Independer.WCFDataAnnotations`) instead. 
+
 
 ## Version history
 
