@@ -6,7 +6,7 @@
 		<Description>Extended and improved version of the original DevTrends.WCFDataAnnotations library. WCFDataAnnotations allows you to automatically validate WCF service operation arguments using the validation attributes and IValidatableObject interface from System.ComponentModel.DataAnnotations.</Description>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<VersionPrefix>1.3.0</VersionPrefix>
-		<PackageLicenseUrl>https://github.com/Independer/wcfdataannotations/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/Independer/wcfdataannotations</PackageProjectUrl>
 		<PackageReleaseNotes>The improved WCF Data Annotations. Validate Data Annotations Validation Attributes applied to properties down the entire object graph</PackageReleaseNotes>
 		<Copyright>Copyright © Independer 2021</Copyright>
@@ -34,5 +34,8 @@
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
 		<PackageReference Include="System.ServiceModel.Primitives" Version="4.8.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="../LICENSE" Pack="true" PackagePath="" />
 	</ItemGroup>
 </Project>
