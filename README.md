@@ -61,6 +61,14 @@ The `PublicKeyToken` of the signed version is: `656e010cba88e92b`
 
 ## Version history
 
+ * 1.3.0 
+   * Enhancements:
+     * Package is now signed
+     * Migrated project to SDK-style
+     * Target framework changes: 
+       * Update .NET 4.5.1 target framework to .NET 4.7.2 
+       * Add netstandard2.0 target for limited dotnetcore support ( validation logic, no WCF )
+
  * 1.2.0.1 (Only for the Strong Named version)
    * 1.2.0 for Strong Named Nuget feed was published accidentally without being signed, so published 1.2.0.1 signed
 
