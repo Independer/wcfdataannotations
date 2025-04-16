@@ -66,20 +66,23 @@ namespace Independer.WCFDataAnnotations {
     /// <param name="serviceDescription">The service description.</param>
     /// <param name="serviceHostBase">The host that is currently being built.</param>
     public void ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) {
-      var operations =
+      var operations = (
         from dispatcher in serviceHostBase.ChannelDispatchers.Cast<ChannelDispatcher>()
         from endpoint in dispatcher.Endpoints
         from operation in endpoint.DispatchRuntime.Operations
-        select operation;
+        select operation)
+        .ToList();
 
       foreach (var endpoint in serviceHostBase.Description.Endpoints) {
         var contractOperations = endpoint.Contract.Operations.ToList();
 
-        operations = operations.Where(op => contractOperations.Any(co => co.Name == op.Name));
+        var dispatchedEndpointOperations = operations
+          .Where(op => contractOperations.Any(co => co.Name == op.Name))
+          .ToList();
 
         var errorMessageGenerator = new ErrorMessageGenerator();
 
-        foreach (var operation in operations) {
+        foreach (var operation in dispatchedEndpointOperations) {
           var parameterInfo = GetParameterInfo(operation.Name, contractOperations);
 
           operation.ParameterInspectors.Add(new ValidatingParameterInspector(_validators, errorMessageGenerator, _validationResultsLogger, parameterInfo));
