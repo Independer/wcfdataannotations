@@ -71,9 +71,10 @@ If you used that package previously, you can migrate and continue using the main
 
 ## Version history
 
- * 1.3.1
+ * 1.3.2
    * Bug fixes:
-     * Fixed an issue with activating validation behavior when multiple service endpoints are declared  
+     * Fixed an issue with activating validation behavior when multiple service endpoints are declared
+
  * 1.3.0 
    * Enhancements:
      * Package is now signed
